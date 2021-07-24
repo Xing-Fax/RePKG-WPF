@@ -1,0 +1,34 @@
+﻿<Window x:Name="主窗体" x:Class="RePKG_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RePKG_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="542" Width="814"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}" FontFamily="Microsoft YaHei UI" Icon="512X512.ico">
+    <Grid>
+        <ScrollViewer x:Name="日志框" HorizontalAlignment="Left" Height="338" VerticalAlignment="Top" Width="630" Margin="10,155,0,0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="-7,0,0,0">
+            <TextBlock x:Name="日志" TextWrapping="Wrap" Text="TextBlock" Background="{Binding Background, ElementName=文件下拉框}"/>
+        </ScrollViewer>
+        <Button x:Name="选择" Content="添加文件" HorizontalAlignment="Left" Height="48" Margin="655,10,0,0" VerticalAlignment="Top" Width="136" FontSize="16" FontWeight="Bold" Click="选择_Click"/>
+        <Button x:Name="目录" Content="输出目录" HorizontalAlignment="Left" Height="48" Margin="655,69.358,0,0" VerticalAlignment="Top" Width="136" FontSize="16" FontWeight="Bold" Click="目录_Click"/>
+        <Button x:Name="开始" Content="开始执行" HorizontalAlignment="Left" Height="48" Margin="655,445,0,0" VerticalAlignment="Top" Width="136" FontSize="16" FontWeight="Bold" Click="开始_Click"/>
+        <TextBox x:Name="输出路径" HorizontalAlignment="Left" Height="30" Margin="10,80,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="630" VerticalContentAlignment="Center" Background="{Binding Background, ElementName=文件下拉框}"/>
+        <Label x:Name="输出日志" Content="输出日志：" HorizontalAlignment="Left" Height="30" Margin="10,125,0,0" VerticalAlignment="Top" Width="125" FontSize="16"/>
+        <Button x:Name="清空文件" Content="清空文件列表" HorizontalAlignment="Left" Height="48" Margin="655,155,0,0" VerticalAlignment="Top" Width="136" FontSize="16" FontWeight="Bold" Click="清空文件_Click"/>
+        <Button x:Name="清除日志" Content="清除运行日志" HorizontalAlignment="Left" Height="48" Margin="655,215,0,0" VerticalAlignment="Top" Width="136" FontSize="16" FontWeight="Bold" Click="清除日志_Click"/>
+        <Expander x:Name="文件下拉框" Header="已选择0个对象" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Microsoft YaHei UI" BorderBrush="#00FFB1B1" Background="#FFECECEC" MinWidth="630" SnapsToDevicePixels="True" HorizontalContentAlignment="Stretch">
+            <Grid Background="#FFE5E5E5">
+                <ListBox x:Name="文件列表" VerticalAlignment="Top" FontFamily="Microsoft YaHei UI" HorizontalContentAlignment="Stretch"/>
+            </Grid>
+        </Expander>
+        <Button x:Name="打开目录_" Content="打开输出目录" HorizontalAlignment="Left" Height="48" Margin="655,275,0,0" VerticalAlignment="Top" Width="136" FontSize="16" FontWeight="Bold" Click="打开目录__Click"/>
+    </Grid>
+</Window>
