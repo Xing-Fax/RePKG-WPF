@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RePKG_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="542" Width="814"
+        Title="RePKG-GUI" Height="542" Width="814"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
      TextElement.FontSize="13"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}" FontFamily="Microsoft YaHei UI" Icon="512X512.ico">
+     Background="{DynamicResource MaterialDesignPaper}" FontFamily="Microsoft YaHei UI" Icon="512X512.ico" ResizeMode="NoResize">
     <Grid>
         <ScrollViewer x:Name="日志框" HorizontalAlignment="Left" Height="338" VerticalAlignment="Top" Width="630" Margin="10,155,0,0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="-7,0,0,0">
             <TextBlock x:Name="日志" TextWrapping="Wrap" Text="TextBlock" Background="{Binding Background, ElementName=文件下拉框}"/>

@@ -113,26 +113,40 @@ namespace RePKG_WPF
                     日志.Text += "\n[" + DateTime.Now.ToString() + "]: 输出目录不存在,重新创建目录";
                     Directory.CreateDirectory(out_file);//创建新路径
                 }
-                for (int i = 0; i < Number_file .Count; i ++)
+                using (BackgroundWorker bw = new BackgroundWorker())
+                {
+                    bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+                    bw.DoWork += new DoWorkEventHandler(bw_DoWork2);//建立后台
+                    bw.RunWorkerAsync();//开始执行
+                }
+
+            }
+        }
+        //后台执行解压
+        static string str = "";//存储返回结果
+        void bw_DoWork2(object sender, DoWorkEventArgs e)//后台
+        {
+            for (int i = 0; i < Number_file.Count; i++)
+            {
+                Dispatcher.Invoke(new Action(delegate
                 {
                     日志.Text += "\n[" + DateTime.Now.ToString() + "]: 开始执行第" + (i + 1) + "个文件";
                     日志.Text += "\n[" + DateTime.Now.ToString() + "]: 源文件：" + Number_file[i];
                     日志.Text += "\n[" + DateTime.Now.ToString() + "]: 输出路径：" + out_file + @"\" + System.IO.Path.GetFileNameWithoutExtension(Number_file[i].ToString());
+                }));
 
-                    using (BackgroundWorker bw = new BackgroundWorker())
-                    {
-                        bw.DoWork += new DoWorkEventHandler(bw_DoWork2);//建立后台
-                        bw.RunWorkerAsync(Temp_file + @"\RePKG.exe extract " + Number_file[i] + " -o" + out_file + @"\" + System.IO.Path.GetFileNameWithoutExtension(Number_file[i].ToString()));//开始执行
-                    }
+                str = Related_functions.CMD.RunCmd(Temp_file + @"\RePKG.exe extract " + Number_file[i] + " -o" + out_file + @"\" + System.IO.Path.GetFileNameWithoutExtension(Number_file[i].ToString()));
+                Dispatcher.Invoke(new Action(delegate
+                {
                     日志.Text += str;
-                }
+                }));
             }
+            
         }
-
-        static string str = "";//存储返回结果
-        void bw_DoWork2(object sender, DoWorkEventArgs e)//后台
+        //完成后返回
+        void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            str = Related_functions.CMD.RunCmd(e.Argument.ToString());
+            日志.Text += "\n[" + DateTime.Now.ToString() + "]: 全部解压完毕！";
         }
 
         private void 打开目录__Click(object sender, RoutedEventArgs e)
@@ -141,8 +155,8 @@ namespace RePKG_WPF
             {
                 日志.Text += "\n[" + DateTime.Now.ToString() + "]: 输出目录不存在,重新创建目录";
                 Directory.CreateDirectory(out_file);//创建新路径
-                System.Diagnostics.Process.Start("explorer.exe", out_file);
             }
+            Related_functions.CMD.RunCmd("explorer " + out_file + @"\");
         }
     }
 }
