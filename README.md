@@ -24,4 +24,6 @@
 
 ## 写到最后
 
+可执行文件链接：https://wwe.lanzoui.com/b01ogn8eh 密码:d76o
+
 程序基于RePKG的开源项目 https://github.com/notscuffed/repkg
