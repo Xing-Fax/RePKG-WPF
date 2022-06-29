@@ -135,7 +135,7 @@ namespace RePKG_WPF
                     日志.Text += "\n[" + DateTime.Now.ToString() + "]: 输出路径：" + out_file + @"\" + System.IO.Path.GetFileNameWithoutExtension(Number_file[i].ToString());
                 }));
 
-                str = Related_functions.CMD.RunCmd(Temp_file + @"\RePKG.exe extract " + Number_file[i] + " -o" + out_file + @"\" + System.IO.Path.GetFileNameWithoutExtension(Number_file[i].ToString()));
+                str = Related_functions.CMD.RunCmd(Temp_file + @"\RePKG.exe extract """ + Number_file[i] + @""" -o """ + out_file + @"\" + System.IO.Path.GetFileNameWithoutExtension(Number_file[i].ToString()))+@"""";
                 Dispatcher.Invoke(new Action(delegate
                 {
                     日志.Text += str;
